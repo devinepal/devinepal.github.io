@@ -8,7 +8,7 @@ export default function HomePage() {
         <p>
           This webpage was built as part of Assignment 3 for IT516 — Web Information Systems.
           It demonstrates the use of theme toggle, form validation, back to top button, responsive design,
-          and commit in github, Live on vercel.
+          and commit in github, Live on vercel, live on github.
         </p>
         <a href="#about" className="cta-button">Learn More</a>
       </div>

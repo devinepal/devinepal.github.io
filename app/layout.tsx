@@ -1,22 +1,22 @@
-import "./globals.css";
-import Navbar from "../components/Navbar";
-import BackToTop from "../components/BackToTop";
-export const metadata = {
-  title: "Week 3 Assignment",
-  description: "Interactive Next.js Website",
+import type { Metadata } from 'next';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import './globals.css';
+import BackToTop from '@/components/BackToTop';
+
+export const metadata: Metadata = {
+  title: 'Devi Nepal — Developer',
+  description: 'Personal portfolio',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <BackToTop />
+        <Header />
+        <main>{children}</main>
+        <BackToTop/>
+        <Footer />
       </body>
     </html>
   );

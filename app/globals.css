@@ -1,16 +1,16 @@
-
-/* --- CSS Variables (Color Palette & Fonts) --- */
+/* ============================================================
+   CSS VARIABLES — Light & Dark Theme
+   ============================================================ */
 :root {
-  --color-bg: #f7f5f0;
-  --color-dark: #1a1a2e;
-  --color-text: #2d6a4f;
-  --color-accent: #74b49b;
-  --color-text: #ffffff;
-  --color-card-bg: #ffffff;
-  --color-alt-bg: #eaf4ee;
-  --color-text: #2c2c2c;
-  --color-muted: #666;
-  --color-border: #d4e6dc;
+  --bg: #f7f5f0;
+  --text: #2c2c2c;
+  --muted: #666666;
+  --border: #d4e6dc;
+  --accent: #2d6a4f;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --tag-bg: #eaf4ee;
+  --dark: #1a1a2e;
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
   --radius: 10px;
@@ -18,7 +18,20 @@
   --transition: 0.25s ease;
 }
 
-/* --- Reset & Base --- */
+html.dark {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --muted: #cecece;
+  --border: #2a2a2a;
+  --accent: #74b49b;
+  --card-bg: #1e293b;
+  --input-bg: #1e293b;
+  --tag-bg: #1e3a5f;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -29,32 +42,40 @@ html {
   scroll-behavior: smooth;
 }
 
-body.light {
-  --color-bg: #f7f5f0;
-  --color-text: #2d6a4f;
-  --color-card-bg: #ffffff;
-    --color-muted: #525252;
-}
-
-body.dark {
-  --color-bg: #0f172a;
-  --color-text: #f1f5f9;
-  --color-card-bg: #1e293b;
-  --color-muted: #cecece;
-}
-
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: background-color var(--transition), color var(--transition);
 }
 
-/* --- HEADER --- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  background-color: var(--tag-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  color: var(--text);
+}
+
+/* ============================================================
+   HEADER  (components/Header.tsx)
+   ============================================================ */
 header {
-  background-color: var(--color-dark);
- color: var(--color-text);
+  background-color: var(--dark);
+  color: #ffffff;
   padding: 48px 24px 36px;
   text-align: center;
-  border-bottom: 4px solid var(--color-accent);
+  border-bottom: 4px solid var(--accent);
 }
 
 .header-inner h1 {
@@ -63,24 +84,30 @@ header {
   font-weight: 700;
   letter-spacing: 0.02em;
   margin-bottom: 8px;
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .tagline {
   font-size: 0.95rem;
-  color: var(--color-accent);
+  color: var(--accent);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 300;
 }
 
-/* --- NAVIGATION --- */
+/* ============================================================
+   NAVIGATION  (components/Nav.tsx)
+   ============================================================ */
 nav {
-  background-color: var(--color-text);
+  background-color: var(--bg);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 nav ul {
@@ -94,7 +121,7 @@ nav ul {
 
 nav ul li a {
   display: block;
-  color: var(--color-bg);
+  color: var(--text);
   text-decoration: none;
   padding: 16px 28px;
   font-size: 0.95rem;
@@ -105,42 +132,66 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: var(--color-accent);
-  color: var(--color-dark);
+  background-color: var(--accent);
+  color: var(--dark);
 }
 
-/* --- MAIN --- */
+/* Theme toggle button inside Header */
+.theme-btn {
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  cursor: pointer;
+  background: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+
+.theme-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
 main {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* --- HERO SECTION --- */
+/* ============================================================
+   HERO SECTION  (components/Hero.tsx)
+   ============================================================ */
 .hero-section {
   padding: 80px 0 60px;
   text-align: center;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .hero-text h2 {
   font-family: var(--font-heading);
   font-size: 2.2rem;
-  color: var(--color-text);
+  color: var(--text);
   margin-bottom: 20px;
 }
 
 .hero-text p {
   font-size: 1.1rem;
-  color: var(--color-text);
+  color: var(--muted);
   max-width: 680px;
   margin: 0 auto 32px;
+  line-height: 1.7;
 }
 
 .cta-button {
   display: inline-block;
-  background-color: var(--color-accent);
-  color: var(--color-text);
+  background-color: var(--accent);
+  color: #ffffff;
   text-decoration: none;
   padding: 14px 36px;
   border-radius: 50px;
@@ -151,18 +202,21 @@ main {
 }
 
 .cta-button:hover {
-  background-color: var(--color-accent);
+  opacity: 0.9;
   transform: translateY(-2px);
+  text-decoration: none;
 }
 
-/* --- CONTENT SECTIONS --- */
+/* ============================================================
+   CONTENT SECTIONS
+   ============================================================ */
 .content-section {
   padding: 64px 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .alt-bg {
-  background-color: var(--color-bg);
+  background-color: var(--tag-bg);
   margin: 0 -24px;
   padding: 64px 24px;
 }
@@ -170,7 +224,7 @@ main {
 .content-section h2 {
   font-family: var(--font-heading);
   font-size: 1.9rem;
-  color: var(--color-text);
+  color: var(--text);
   margin-bottom: 36px;
   position: relative;
   display: inline-block;
@@ -181,12 +235,14 @@ main {
   display: block;
   width: 50px;
   height: 3px;
-  background-color: var(--color-accent);
+  background-color: var(--accent);
   margin-top: 8px;
   border-radius: 2px;
 }
 
-/* --- CARD GRID (About) --- */
+/* ============================================================
+   CARD GRID  (components/Card.tsx)
+   ============================================================ */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -194,12 +250,15 @@ main {
 }
 
 .card {
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px 24px;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .card:hover {
@@ -210,17 +269,37 @@ main {
 .card h3 {
   font-family: var(--font-heading);
   font-size: 1.15rem;
-  margin-bottom: 12px;
-  color: var(--color-text);
+  color: var(--text);
 }
 
 .card p {
-  color: var(--color-muted);
+  color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.65;
 }
 
-/* --- SKILLS LIST (Coursework) --- */
+/* Tech tags inside Card */
+.card-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-tags li {
+  font-size: 0.75rem;
+  background: var(--tag-bg);
+  border-radius: 1rem;
+  padding: 0.2rem 0.6rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   SKILLS LIST  (Coursework section)
+   ============================================================ */
 .skills-list {
   display: flex;
   flex-direction: column;
@@ -232,8 +311,8 @@ main {
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow);
@@ -253,65 +332,82 @@ main {
 .skill-item h3 {
   font-family: var(--font-heading);
   font-size: 1.1rem;
-  color: var(--color-text);
+  color: var(--text);
   margin-bottom: 6px;
 }
 
 .skill-item p {
-  color: var(--color-muted);
+  color: var(--muted);
   font-size: 0.95rem;
 }
 
-code {
-  background-color: var(--color-bg);
-  padding: 1px 5px;
-  border-radius: 3px;
-  font-size: 0.88em;
-  color: var(--color-text);
-}
-
-/* --- CONTACT --- */
-.contact-box {
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 36px 40px;
-  max-width: 520px;
-  box-shadow: var(--shadow);
+/* ============================================================
+   ACCORDION / FAQ  (components/AccordionSection.tsx)
+   ============================================================ */
+.accordion {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0.75rem;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-.contact-box p {
-  font-size: 1rem;
-  color: var(--color-text);
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
 }
 
-.contact-box strong {
-  color: var(--color-text);
+.accordion-trigger {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1rem 1.25rem;
   font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: background-color var(--transition);
 }
 
-.contact-box a {
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color var(--transition);
+.accordion-trigger:hover {
+  background-color: var(--tag-bg);
 }
 
-.contact-box a:hover {
-  color: var(--color-accent);
-  text-decoration: underline;
+.accordion-icon {
+  transition: transform 0.2s ease;
+  display: inline-block;
 }
 
-/* --- FOOTER --- */
+.accordion-icon.open {
+  transform: rotate(180deg);
+}
+
+.accordion-body {
+  margin: 0;
+  padding: 0.75rem 1.25rem 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   FOOTER  (components/Footer.tsx)
+   ============================================================ */
 footer {
-  background-color: var(--color-dark);
-  color: rgba(255,255,255,0.65);
+  background-color: var(--dark);
+  color: rgba(255, 255, 255, 0.65);
   text-align: center;
   padding: 32px 24px;
   font-size: 0.88rem;
-  margin-top: 0;
 }
 
 footer p {
@@ -320,16 +416,16 @@ footer p {
 
 .footer-sub {
   font-size: 0.8rem;
-  color: var(--color-accent);
+  color: var(--accent);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-/* =========================================
-   RESPONSIVE DESIGN — Media Queries
-   ========================================= */
+/* ============================================================
+   RESPONSIVE — Media Queries
+   ============================================================ */
 
-/* Tablet (max 900px) */
+/* Tablet */
 @media (max-width: 900px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -344,9 +440,8 @@ footer p {
   }
 }
 
-/* Mobile (max 768px) */
+/* Mobile */
 @media (max-width: 768px) {
-  /* Navigation stacks vertically */
   nav ul {
     display: block;
     text-align: center;
@@ -354,15 +449,13 @@ footer p {
 
   nav ul li a {
     padding: 13px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Header adjusts */
   .header-inner h1 {
     font-size: 1.9rem;
   }
 
-  /* Hero section */
   .hero-section {
     padding: 48px 0 40px;
   }
@@ -375,17 +468,10 @@ footer p {
     font-size: 1rem;
   }
 
-  /* Cards stack to single column */
   .card-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Contact box full width */
-  .contact-box {
-    padding: 24px 20px;
-  }
-
-  /* Skills items adjust */
   .skill-item {
     flex-direction: column;
     gap: 12px;
@@ -405,7 +491,7 @@ footer p {
   }
 }
 
-/* Small phones (max 480px) */
+/* Small phones */
 @media (max-width: 480px) {
   .header-inner h1 {
     font-size: 1.5rem;
@@ -420,35 +506,7 @@ footer p {
     font-size: 0.8rem;
   }
 }
-.navbar {
-  background: var(--color-bg);
 
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding: 20px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color:var(--color-text);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.theme-btn {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
 
 
 .contact-form {
@@ -487,9 +545,4 @@ footer p {
 
 .success {
   color: limegreen;
-}
-
-body.light {
-  background-color: var(--color-bg);
-  color: var(--color-text);
 }

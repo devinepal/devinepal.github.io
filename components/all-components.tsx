@@ -224,7 +224,7 @@ const inputStyle: React.CSSProperties = {
 //   --input-bg: #ffffff;
 //   --tag-bg: #eff6ff;
 // }
-//
+
 // html.dark {
 //   --bg: #0f0f0f;
 //   --text: #f0f0f0;
@@ -235,7 +235,7 @@ const inputStyle: React.CSSProperties = {
 //   --input-bg: #1a1a1a;
 //   --tag-bg: #1e3a5f;
 // }
-//
+
 // * { box-sizing: border-box; }
 // body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; margin: 0; }
 // a { color: var(--accent); }

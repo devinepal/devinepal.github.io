@@ -15,7 +15,13 @@ const projects = [
     href: 'https://github.com/devinepal/week3',
     tech: ['React', 'Node.js'],
   },
-
+  {
+    title: 'learning next.js',
+    description: 'A simple portfolio website wtih theme toggle, back to top feature built using React and CSS.',
+    href: 'https://github.com/devinepal/devinepal.github.io',
+    tech: ['React', 'Node.js'],
+  },
+  
 ];
 
 export default function HomePage() {
